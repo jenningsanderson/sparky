@@ -1,5 +1,7 @@
 *.jar
 *.class
 *.cache
-
+*.log
 target/
+dependencies/
+spark-data/

@@ -1,7 +1,15 @@
 /* SimpleApp.scala */
 import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
+import org.apache.spark.SparkContext._ //What does the "_" do?
 import org.apache.spark.SparkConf
+
+/*
+
+	Goals of this program:
+		1. Load some contextual streams and do some movement derivation calculations
+
+*/
+
 
 object SimpleApp {
   def main(args: Array[String]) {
@@ -13,4 +21,10 @@ object SimpleApp {
     val numBs = logData.filter(line => line.contains("b")).count()
     println("Lines with a: %s, Lines with b: %s".format(numAs, numBs))
   }
+
+  // def createConnection() = { 
+  // 	Class.forName(" com.mysql.jdbc.Driver").newInstance(); 
+  // 	DriverManager.getConnection(" jdbc:mysql:// localhost/ test? user = holden");
+  // }
 }
+
