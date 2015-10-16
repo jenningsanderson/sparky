@@ -1,0 +1,1 @@
+spark-submit --class "JSONExplorer" --master local[4] build/libs/JSONExplorer-all.jar
