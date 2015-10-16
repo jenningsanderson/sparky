@@ -2,6 +2,13 @@
 *.class
 *.cache
 *.log
+*.bat
+gradle
+gradlew
+.gradle/
 target/
+project/
+build/
+gradle/
 dependencies/
 spark-data/
