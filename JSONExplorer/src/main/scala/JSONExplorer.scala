@@ -28,9 +28,16 @@ object JSONExplorer {
 
     val tweet_objs = raw_tweets.map(t => parseToTweet(t))
 
-    tweet_objs.take(10).foreach(t => 
-      println(t.handle)
-    )
+    val users = tweet_objs.groupBy(_.handle)
+
+    users.take(3).foreach(x => {
+      println(x._1)
+      println(x._2.size)
+    })
+
+    // tweet_objs.take(10).foreach(t => 
+    //   println(t.handle)
+    // )
     
     
   }
