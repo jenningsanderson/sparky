@@ -6,20 +6,15 @@ import org.apache.spark.SparkConf
 import spray.json._
 import DefaultJsonProtocol._
 
-case class Tweet(handle: String, time: String, text: String, context: Boolean, geo: Array)
+case class Tweet(handle: String, time: String, text: String, context: Boolean, geo: Array[Float])
+object Tweet
 
-object MyTweetProtocol extends DefaultJsonProtocol {
-  implicit val tweetFormat = jsonFormat4(Tweet)
+object MyJsonProtocol extends DefaultJsonProtocol {
+  implicit val tweetFormat = jsonFormat5(Tweet.apply)
 }
 
-// case class Color(name: String, red: Int, green: Int, blue: Int)
+import MyJsonProtocol._
 
-// object MyJsonProtocol extends DefaultJsonProtocol {
-//   implicit val colorFormat = jsonFormat4(Color)
-// }
-
-// import MyJsonProtocol._
-import MyTweetProtocol._
 
 object JSONExplorer {
 
@@ -32,13 +27,17 @@ object JSONExplorer {
     val raw_tweets = sc.textFile(tweet_file)
 
     val tweet_objs = raw_tweets.map(t => parseToTweet(t))
+
+    tweet_objs.take(10).foreach(t => 
+      println(t.handle)
+    )
     
-    tweet_objs.take(10).foreach(println)
+    
   }
 
   def parseToTweet(tweet: String)={
     val jsonAst = tweet.parseJson
-    jsonAst.convertTo[Tweet]
+    jsonAst.convertTo[Tweet] 
   }
 
 }
